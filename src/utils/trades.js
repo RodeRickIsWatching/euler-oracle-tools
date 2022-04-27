@@ -47,6 +47,8 @@ export const getDump = async (
       amountIn,
       sqrtPriceLimitX96: 0,
     });
+
+    // console.log(quote)
     let after = sqrtPriceX96ToPrice(quote.sqrtPriceX96After, inverted);
     const priceImpact = utils.formatEther(
       after.sub(currPrice).mul(c1e18).div(currPrice.eq(0) ? 1 : currPrice).mul(100)

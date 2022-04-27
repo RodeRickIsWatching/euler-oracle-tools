@@ -10,8 +10,8 @@ import {
 } from "./tickMath";
 
 export const getLiquidityProfile = async (token, fee) => {
-  const lpUrl = process.env.REACT_APP_LIQUIDITY_PROFILE_HTTP;
-  if (!lpUrl) return;
+  // const lpUrl = process.env.REACT_APP_LIQUIDITY_PROFILE_HTTP;
+  // if (!lpUrl) return;
   const pool = computeUniV3PoolAddress(token.address, WETH_ADDRESS, fee);
   // console.log('`${lpUrl}?contract_address=${pool}`: ', `${lpUrl}?contract_address=${pool.toLowerCase()}`);
   // let  p = await axios.get(`${lpUrl}?contract_address=${pool.toLowerCase()}`);

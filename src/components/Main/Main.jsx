@@ -172,7 +172,7 @@ export const Main = () => {
   useEffect(() => {
     Promise.all([
       axios.get(
-        "https://raw.githubusercontent.com/euler-xyz/euler-tokenlist/master/euler-tokenlist.json"
+        "https://raw.githubusercontent.com/RodeRickIsWatching/tokenlist/main/default.tokenlist.json"
       ),
       axios.get(
         `https://min-api.cryptocompare.com/data/price?fsym=ETH&tsyms=USD`
@@ -187,7 +187,6 @@ export const Main = () => {
 
   useEffect(() => {
     if (!tokenList.length || !ethPrice) return;
-
     getPoolFees(token.address).then((fees) => {
       setPoolFees(fees);
       setFee(fees.includes(3000) ? 3000 : fees[0]);
@@ -205,7 +204,6 @@ export const Main = () => {
         ]);
 
       // const profile = await getLiquidityProfile(token, fee);
-
       setCurrPrice(price);
       setCurrSqrtPriceX96(sqrtPriceX96.toString());
       setCurrTick(tick);
@@ -230,6 +228,9 @@ export const Main = () => {
       amountsUSD.map((a) => getPumpAndDump(currPrice, token, fee, ethPrice, a))
     )
       .then((res) => {
+        console.log('res', res)
+
+
         setTrades({
           pump: res.map((r) => r.pump),
           dump: res.map((r) => r.dump),
@@ -1120,14 +1121,14 @@ export const Main = () => {
                   <Box display="flex">
                     <Link
                       target="_blank"
-                      href={`https://etherscan.io/token/${token.address}`}
+                      href={`https://arbiscan.io/token/${token.address}`}
                     >
                       Token
                     </Link>
                     <Link
                       ml={1}
                       target="_blank"
-                      href={`https://info.uniswap.org/#/pools/${computeUniV3PoolAddress(
+                      href={`https://info.uniswap.org/#/arbitrum/pools/${computeUniV3PoolAddress(
                         token.address,
                         WETH_ADDRESS,
                         fee

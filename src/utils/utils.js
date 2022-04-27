@@ -15,9 +15,15 @@ import {
 
 import eulerViewArtifacts from "../artifacts/EulerGeneralView.json";
 
+// export const provider = new providers.InfuraProvider('mainnet')
+
+// export const provider = new providers.InfuraProvider('arbitrum')
+
 export const provider = new providers.JsonRpcProvider(
-  process.env.REACT_APP_ETHEREUM_NETWORK_HTTP
+  'https://arb1.arbitrum.io/rpc'
 );
+
+
 
 const factoryContract = new Contract(
   UNISWAP_FACTORY_ADDRESS,
@@ -184,6 +190,7 @@ export const computeUniV3PoolAddress = (tokenA, tokenB, fee) => {
 };
 
 export const getMarketConfig = async (underlyingAddress) => {
+  if(!EULER_VIEW_ADDRESS) return;
   const res = await eulerViewContract.callStatic.doQuery({
     eulerContract: EULER_CONTRACT_ADDRESS,
     account: constants.AddressZero,
